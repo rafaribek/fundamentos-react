@@ -3,9 +3,23 @@ import NextLink from "next/link"
 import loginImage from "../../public/assets/login-image.gif";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PasswordInput } from "@/components/ui/password-input";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const signInFormSchema = z.object({
+  email: z.email("digite um email válido").nonempty("O email é obrigatório"),
+  password: z.string().nonempty("A senha é obrigatória").min(8, "A senha deve ter pelo menos 8 caracteres"),
+});
+
+type SignInFormData = z.infer<typeof signInFormSchema>;
 
 export default function Login() {
-    return(
+  const {register, handleSubmit} = useForm({
+    resolver: zodResolver(signInFormSchema)
+  });
+
+  return(
     <Flex w="100vw" h="100vh">
         <Flex w="50%" bg="#2C73EB" align="center" justify="center">
           <Image w={500} h={500} src={loginImage.src}/>
@@ -21,14 +35,14 @@ export default function Login() {
                 <Field.Label color="gray.500" fontSize="md">
                   Email
                 </Field.Label>
-                <Input type="email" h={16} colorPalette="blue" borderRadius="md" color="black" />
+                <Input type="email" h={16} colorPalette="blue" borderRadius="md" color="black" {...register("email")} />
               </Field.Root>
 
               <Field.Root colorPalette="blue">
                 <Field.Label color="gray.500" fontSize="md">
                   Senha
                 </Field.Label>
-                <PasswordInput h={16} colorPalette="blue" borderRadius="md" color="black" />
+                <PasswordInput h={16} colorPalette="blue" borderRadius="md" color="black" {...register("password")}  />
               </Field.Root>
 
 
