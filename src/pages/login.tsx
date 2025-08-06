@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Image, Input, Stack, Text, VStack, Link as ChakraLink, HStack, Field } from "@chakra-ui/react";
+import { Button, Flex, Heading, Image, Input, Stack, Text, VStack, Link as ChakraLink, HStack, Field, FieldErrorText } from "@chakra-ui/react";
 import NextLink from "next/link"
 import loginImage from "../../public/assets/login-image.gif";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -15,9 +15,13 @@ const signInFormSchema = z.object({
 type SignInFormData = z.infer<typeof signInFormSchema>;
 
 export default function Login() {
-  const {register, handleSubmit} = useForm({
+  const {register, handleSubmit, formState: {errors} } = useForm({
     resolver: zodResolver(signInFormSchema)
   });
+
+  function handleSignIn(data: SignInFormData) {
+    console.log(data);
+  }
 
   return(
     <Flex w="100vw" h="100vh">
@@ -30,19 +34,21 @@ export default function Login() {
 
             <Text color="gray.400" fontSize="lg" fontWeight="normal">Se você ja é membro, você pode fazer login com seu endereço de e-mail e senha.</Text>
 
-            <VStack align="flex-start" gap={6} mt={10}>
-              <Field.Root >
+            <VStack as="form" onSubmit={handleSubmit(handleSignIn)} align="flex-start" gap={6} mt={10}>
+              <Field.Root invalid={!!errors.email} >
                 <Field.Label color="gray.500" fontSize="md">
                   Email
                 </Field.Label>
                 <Input type="email" h={16} colorPalette="blue" borderRadius="md" color="black" {...register("email")} />
+                <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
               </Field.Root>
 
-              <Field.Root colorPalette="blue">
+              <Field.Root colorPalette="blue" invalid={!!errors.password}>
                 <Field.Label color="gray.500" fontSize="md">
                   Senha
                 </Field.Label>
                 <PasswordInput h={16} colorPalette="blue" borderRadius="md" color="black" {...register("password")}  />
+                <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
               </Field.Root>
 
 
@@ -50,7 +56,7 @@ export default function Login() {
                 Lembre-me
               </Checkbox>
 
-              <Button w="full" h={16} colorPalette="blue" borderRadius="md" fontSize="md" fontWeight="medium">
+              <Button w="full"  type="submit" h={16} colorPalette="blue" borderRadius="md" fontSize="md" fontWeight="medium">
                 Entrar
               </Button>
             </VStack>
