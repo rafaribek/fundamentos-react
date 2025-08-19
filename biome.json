@@ -8,9 +8,9 @@
 	"files": {
 		"ignoreUnknown": false,
     "includes": [
-      "**/src/**",
-     "!**/src/components/ui/**"
-     ]
+      "./src/**",
+      "!src/components/ui/**"
+    ]
 	},
 	"formatter": {
 		"enabled": true,
@@ -22,6 +22,9 @@
 			"recommended": true,
       "style": {
         "useImportType": "off"
+      },
+      "suspicious": {
+        "noAsyncPromiseExecutor": "off"
       }
 		}
 	},
