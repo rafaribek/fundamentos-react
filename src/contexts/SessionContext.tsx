@@ -1,7 +1,7 @@
 import { destroyCookie, setCookie } from "nookies";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { api } from "@/services/apiClient";
-import path from "path";
+
 
 const CESUL_USER = "cesul.user";
 const CESUL_TOKEN = "cesul.token";
