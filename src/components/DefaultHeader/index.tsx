@@ -1,10 +1,10 @@
-import { Flex, Group, IconButton, Image, Separator } from "@chakra-ui/react";
+import { Flex, Group, IconButton, Separator } from "@chakra-ui/react";
 import { BiSolidFoodMenu, BiSolidHelpCircle, BiSolidNotification } from "react-icons/bi";
 import { IoIosSettings, IoMdMoon, IoMdSunny } from "react-icons/io";
 import { Avatar } from "../ui/avatar";
-import logoBranca from "../../../public/assets/logo-cesul-branca.png"
-import logo from "../../../public/assets/logo-cesul.png";
+
 import { useColorMode } from "../ui/color-mode";
+import { Logo } from "./Logo";
 
 export function DefaultHeader() {
   const {toggleColorMode, colorMode} = useColorMode();
@@ -15,11 +15,7 @@ export function DefaultHeader() {
             <BiSolidFoodMenu />
           </IconButton >
 
-          {
-            colorMode === 'dark' ?
-            <Image w="130px" height="60px" src={logoBranca.src} />:
-            <Image w="115px" height="60px" src={logo.src} />
-          }
+          <Logo/>
 
         </Flex>
 
