@@ -16,7 +16,7 @@ export function DefaultLayout({children, title, description}: DefaultLayoutProps
       <Flex flexDir="column" p={8}>
         <Heading fontSize="3xl" mb={4} >{title}</Heading>
 
-        <Text color="fg.muted" fontSize="md">{description}</Text>
+        <Text color="fg.muted" fontSize="md" mb={4}>{description}</Text>
 
         {children}
       </Flex>
