@@ -1,7 +1,7 @@
-import { Card, ColorPalette, Flex, FormatNumber, Icon, Stat } from "@chakra-ui/react";
+import { Card, ColorPalette, Flex, FormatNumber, FormatNumberProps, Icon, Stat } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
-interface IndicatorCardProps {
+interface IndicatorCardProps extends FormatNumberProps{
   icon: IconType;
   label: string;
   value:number;
@@ -9,7 +9,7 @@ interface IndicatorCardProps {
   colorPallete: ColorPalette;
 }
 
-export function IndicatorCard({ icon, label, value, indicator, colorPallete }: IndicatorCardProps) {
+export function IndicatorCard({ icon, label, value, indicator, colorPallete, ...rest }: IndicatorCardProps) {
   const isNegative = indicator.trim().startsWith("-");
   const Indicator = isNegative ? Stat.DownIndicator : Stat.UpIndicator;
   return(
@@ -18,7 +18,7 @@ export function IndicatorCard({ icon, label, value, indicator, colorPallete }: I
                 <Stat.Root>
                   <Stat.Label fontSize="md">{label}</Stat.Label>
                   <Stat.ValueText>
-                    <FormatNumber value={value} />
+                    <FormatNumber value={value}  {...rest}/>
                   </Stat.ValueText>
                   <Indicator alignSelf="start">{indicator}</Indicator>
                 </Stat.Root>

@@ -40,7 +40,10 @@ export default function Home() {
         <IndicatorCard
           icon={FaArrowTrendUp }
           label={"Taxa de aprovação"}
-          value={265}
+          value={0.892}
+          style="percent"
+          minimumFractionDigits={2}
+          maximumFractionDigits={2}
           indicator="+18% este mês"
           colorPallete="green"
         />
