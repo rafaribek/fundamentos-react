@@ -12,7 +12,7 @@ interface RecentActivityProps{
 
 export function RecentActivity({title,icon, dateTime, color }: RecentActivityProps) {
   return(
-    <HStack gap={6}>
+    <HStack _hover={{backgroundColor: "gray.200", rounded: "md"}} gap={6} p={4}>
       <Flex justify="center" align="center" backgroundColor={`${color}.100`} rounded="lg" p="4">
         <Icon as={icon} size="xl" color={`${color}.700`}/>
       </Flex>

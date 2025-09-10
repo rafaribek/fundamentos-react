@@ -50,7 +50,7 @@ export default function Home() {
       title="Dashboard acadêmica"
       description="visão geral do sistema universitário"
     >
-      <HStack>
+      <HStack >
         <IndicatorCard
           icon={IoMdPeople}
           label={"Total de estudantes"}
@@ -88,7 +88,7 @@ export default function Home() {
       </HStack>
 
       <HStack mt={8}>
-        <Card.Root>
+        <Card.Root >
           <Card.Header>
             <Card.Title>Atividades recentes</Card.Title>
           </Card.Header>
