@@ -1,38 +1,20 @@
-import { Card, HStack, Input, InputGroup, SimpleGrid } from "@chakra-ui/react";
+import { Button, Card, createListCollection, HStack, Input, InputGroup, Portal, Select, SimpleGrid } from "@chakra-ui/react";
+import { BiFilterAlt, BiPlus } from "react-icons/bi";
+import { BsDownload } from "react-icons/bs";
 import { LuSearch } from "react-icons/lu";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
+import { StudentsHeader } from "@/components/HeaderTable/StudentsHeader";
 
 export default function Students() {
   return (
     <DefaultLayout
       title="Gestão de Estudantes"
-      description="Gerencie informações dos estudantes matriculados"
+      description="Gerencie informações dos estudantes matrículados"
     >
       <HStack>
-        {/*
-            Campo de pesquisa - SearchInput
+        <StudentsHeader/>
 
-
-            Select - Filtro de Status -
-            Button - Filtros -
-            Button - Exportar -
-            Button - Action Button - Criar um novo estudante
-
-            */}
-        <Card.Root>
-          <Card.Body>
-            <SimpleGrid row={2} rowGap={4}>
-            <InputGroup flex="1" startElement={<LuSearch />}>
-              <Input placeholder="Buscar por Nome, Email ou curso..." />
-            </InputGroup>
-
-            <HStack>
-
-            </HStack>
-            </SimpleGrid>
-          </Card.Body>
-        </Card.Root>
       </HStack>
     </DefaultLayout>
-  );
+  )
 }
