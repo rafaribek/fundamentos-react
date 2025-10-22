@@ -3,6 +3,8 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { StudentsHeader } from "@/components/HeaderTable/StudentsHeader";
 import { Table } from "@/components/Table";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
+import { useEffect } from "react";
+import { api } from "@/services/apiClient";
 
 type Student = {
   fullname: string;
@@ -51,7 +53,7 @@ export default function Students() {
       email: "rafael.torres@example.com",
       status: "Ativo",
       enrollment: "202200567",
-      course: "Ciência da Computação",
+      course: "Ciência da Computaria",
       semester: "5º",
     },
     {
@@ -103,10 +105,20 @@ export default function Students() {
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("enrollment", {
-      header: "Matéria",
+      header: "Matrícula",
       cell: (info) => info.getValue(),
     }),
   ];
+
+  // useEffect(() => {
+  //   async function load() {
+  //     const data = await api.get('/students');
+
+  //     console.log(data);
+  //   }
+
+  //   load();
+  // }, [])
 
   return (
     <DefaultLayout
